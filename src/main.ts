@@ -1,3 +1,5 @@
+/// <reference types="@angular/localize" />
+
 import { importProvidersFrom } from "@angular/core";
 import { BrowserModule, bootstrapApplication } from "@angular/platform-browser";
 import { provideRouter } from "@angular/router";
