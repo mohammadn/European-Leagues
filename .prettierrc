@@ -1,0 +1,15 @@
+{
+  "jsxSingleQuote": true,
+  "printWidth": 120,
+  "bracketSameLine": true,
+  "attributeGroups": [
+    "$CODE_GUIDE",
+    "$ANGULAR_STRUCTURAL_DIRECTIVE",
+    "$ANGULAR_OUTPUT",
+    "$ANGULAR_TWO_WAY_BINDING",
+    "$ANGULAR_INPUT",
+    "$ANGULAR_STRUCTURAL_DIRECTIVE",
+    "$ANGULAR_ELEMENT_REF",
+    "$ANGULAR_ANIMATION"
+  ]
+}
