@@ -1,0 +1,28 @@
+<div class="container py-3">
+  <h2 class="mb-3">Top 5 European League</h2>
+  <div class="container">
+    <ng-container *ngFor="let competition of competitions">
+      <div
+        class="card bg-light mb-2 league"
+        role="button"
+        *ngIf="topFiveEuropeanLeagueCodes.includes(competition.code)"
+        [routerLink]="competition.code">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-auto">
+              <img [src]="competition.emblem" width="70" height="70" />
+            </div>
+            <div class="col">
+              <h4 class="card-title">{{ competition.name }}</h4>
+            </div>
+            <div class="col-1 d-flex justify-content-center align-items-center">
+              <span class="rounded-circle px-2 py-1">
+                <fa-icon [icon]="faChevronRight" [fixedWidth]="true"></fa-icon>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
