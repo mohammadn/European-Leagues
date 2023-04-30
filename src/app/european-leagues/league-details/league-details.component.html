@@ -1,4 +1,4 @@
-<div class="d-flex" *ngIf="standings">
+<div class="d-flex" *ngIf="standings.length !== 0">
   <div class="nav-pills flex-column" [(activeId)]="activeTab" #nav="ngbNav" ngbNav orientation="vertical">
     <ng-container ngbNavItem="home">
       <button ngbNavLink>Home</button>

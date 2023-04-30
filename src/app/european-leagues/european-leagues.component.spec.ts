@@ -22,7 +22,7 @@ describe('EuropeanLeaguesComponent', () => {
   });
 
   it('should load european leagues', fakeAsync(() => {
-    spyOn<any>(component['http'], 'get').and.returnValue(of({ competitions: [{ id: 123 }] }));
+    spyOn(component['http'], 'get').and.returnValue(of({ competitions: [{ id: 123 }] }));
 
     component['loadCompetionsDetails']();
     tick();

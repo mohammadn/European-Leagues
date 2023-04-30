@@ -21,7 +21,7 @@
   <tbody class="table-group-divider">
     <ng-container
       *ngFor="
-        let row of sortedTable?.slice(pageSize * pageIndex - pageSize, pageSize * pageIndex);
+        let row of sortedTable.slice(pageSize * pageIndex - pageSize, pageSize * pageIndex);
         let rowIndex = index
       ">
       <tr>
@@ -60,8 +60,9 @@
 
 <ngb-pagination
   class="d-flex justify-content-end"
-  [(page)]="pageIndex"
+  (pageChange)="pageChange($event)"
+  [page]="pageIndex"
   [pageSize]="pageSize"
-  [collectionSize]="sortedTable?.length ?? 0"
+  [collectionSize]="sortedTable.length"
   [boundaryLinks]="true"
   size="sm"></ngb-pagination>

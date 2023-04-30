@@ -15,7 +15,7 @@ import { Competition } from '../shared-modules/models/competition.model';
 export class EuropeanLeaguesComponent implements OnInit, OnDestroy {
   protected subscriptions = new Subscription();
   protected topFiveEuropeanLeagueCodes = ['PL', 'BL1', 'PD', 'SA', 'FL1'];
-  protected competitions: [Competition] | undefined;
+  protected competitions: Array<Competition> = [];
 
   constructor(private http: HttpClient) {}
 

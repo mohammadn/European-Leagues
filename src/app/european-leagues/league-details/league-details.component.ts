@@ -19,27 +19,27 @@ import { LeagueTableComponent } from './league-table/league-table.component';
   styleUrls: ['./league-details.component.scss'],
 })
 export class LeagueDetailsComponent implements OnInit, OnDestroy {
-  private leagueCode: string | undefined;
+  private leagueCode = '';
   private subscriptions = new Subscription();
   protected activeTab: 'home' | 'away' | 'total' = 'home';
-  protected standings: Array<Standing> | undefined;
+  protected standings: Array<Standing> = [];
 
-  get standingsHomeTable(): Array<Table> | undefined {
-    return this.standings?.find((standing) => standing.type === 'HOME')?.table.slice();
+  get standingsHomeTable(): Array<Table> {
+    return this.standings.find((standing) => standing.type === 'HOME')?.table.slice() ?? [];
   }
 
-  get standingsAwayTable(): Array<Table> | undefined {
-    return this.standings?.find((standing) => standing.type === 'AWAY')?.table.slice();
+  get standingsAwayTable(): Array<Table> {
+    return this.standings.find((standing) => standing.type === 'AWAY')?.table.slice() ?? [];
   }
 
-  get standingsTotalTable(): Array<Table> | undefined {
-    return this.standings?.find((standing) => standing.type === 'TOTAL')?.table.slice();
+  get standingsTotalTable(): Array<Table> {
+    return this.standings.find((standing) => standing.type === 'TOTAL')?.table.slice() ?? [];
   }
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.leagueCode = this.route.snapshot.paramMap.get('leagueCode') ?? undefined;
+    this.leagueCode = this.route.snapshot.paramMap.get('leagueCode') ?? '';
     this.loadStandings();
   }
 

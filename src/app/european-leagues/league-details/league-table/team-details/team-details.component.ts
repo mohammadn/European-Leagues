@@ -17,9 +17,9 @@ export class TeamDetailsComponent implements OnInit {
   @Input() teamDetails: Team | undefined;
 
   protected activeTab: 'goalkeepers' | 'defenders' | 'midfielders' | 'attackers' = 'goalkeepers';
-  protected squad: Array<Squad> | undefined;
+  protected squad: Array<Squad> = [];
 
   ngOnInit(): void {
-    this.squad = this.teamDetails?.squad;
+    this.squad = this.teamDetails?.squad ?? [];
   }
 }
