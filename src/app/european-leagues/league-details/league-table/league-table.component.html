@@ -1,0 +1,33 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="text-center">#</th>
+      <th (sort)="onSort($event)" sortable="team">Team</th>
+      <th class="text-center" (sort)="onSort($event)" sortable="playedGames">PG</th>
+      <th class="text-center" (sort)="onSort($event)" sortable="won">W</th>
+      <th class="text-center" (sort)="onSort($event)" sortable="draw">D</th>
+      <th class="text-center" (sort)="onSort($event)" sortable="lost">L</th>
+      <th class="text-center" (sort)="onSort($event)" sortable="goalsFor">GF</th>
+      <th class="text-center" (sort)="onSort($event)" sortable="goalsAgainst">GA</th>
+      <th class="text-center" (sort)="onSort($event)" sortable="goalDifference">GD</th>
+      <th class="text-center" (sort)="onSort($event)" sortable="points">Pts</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr *ngFor="let row of sortedTable">
+      <td class="text-center">{{ row.position }}</td>
+      <td>
+        <img class="me-2" alt="" [src]="row.team.crest" width="26px" height="26px" />
+        {{ row.team.name }}
+      </td>
+      <td class="text-center">{{ row.playedGames }}</td>
+      <td class="text-center">{{ row.won }}</td>
+      <td class="text-center">{{ row.draw }}</td>
+      <td class="text-center">{{ row.lost }}</td>
+      <td class="text-center">{{ row.goalsFor }}</td>
+      <td class="text-center">{{ row.goalsAgainst }}</td>
+      <td class="text-center">{{ row.goalDifference }}</td>
+      <td class="text-center">{{ row.points }}</td>
+    </tr>
+  </tbody>
+</table>

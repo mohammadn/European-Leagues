@@ -1,63 +1,24 @@
-<div class="d-flex">
+<div class="d-flex" *ngIf="standings">
   <div class="nav-pills flex-column" [(activeId)]="activeTab" #nav="ngbNav" ngbNav orientation="vertical">
     <ng-container ngbNavItem="home">
       <button ngbNavLink>Home</button>
       <ng-template ngbNavContent>
-        <ng-container
-          [ngTemplateOutlet]="table"
-          [ngTemplateOutletContext]="{ table: standingsHome?.table }"></ng-container>
+        <app-league-table [table]="standingsHomeTable"></app-league-table>
       </ng-template>
     </ng-container>
     <ng-container ngbNavItem="away">
       <button ngbNavLink>Away</button>
       <ng-template ngbNavContent>
-        <ng-container
-          [ngTemplateOutlet]="table"
-          [ngTemplateOutletContext]="{ table: standingsAway?.table }"></ng-container>
+        <app-league-table [table]="standingsAwayTable"></app-league-table>
       </ng-template>
     </ng-container>
     <ng-container ngbNavItem="total">
       <button ngbNavLink>Total</button>
       <ng-template ngbNavContent>
-        <ng-container
-          [ngTemplateOutlet]="table"
-          [ngTemplateOutletContext]="{ table: standingsTotal?.table }"></ng-container>
+        <app-league-table [table]="standingsTotalTable"></app-league-table>
       </ng-template>
     </ng-container>
   </div>
 
   <div class="container-fluid ms-4" [ngbNavOutlet]="nav"></div>
 </div>
-
-<ng-template #table let-table="table">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th class="text-center">#</th>
-        <th>Team</th>
-        <th class="text-center">PG</th>
-        <th class="text-center">W</th>
-        <th class="text-center">D</th>
-        <th class="text-center">L</th>
-        <th class="text-center">GF</th>
-        <th class="text-center">GA</th>
-        <th class="text-center">GD</th>
-        <th class="text-center">Pts</th>
-      </tr>
-    </thead>
-    <tbody class="table-group-divider">
-      <tr *ngFor="let row of table; let rowIndex = index">
-        <td class="text-center">{{ rowIndex + 1 }}</td>
-        <td><img class="me-2" alt="" [src]="row.team.crest" width="26px" height="26px" /> {{ row.team.name }}</td>
-        <td class="text-center">{{ row.playedGames }}</td>
-        <td class="text-center">{{ row.won }}</td>
-        <td class="text-center">{{ row.draw }}</td>
-        <td class="text-center">{{ row.lost }}</td>
-        <td class="text-center">{{ row.goalsFor }}</td>
-        <td class="text-center">{{ row.goalsAgainst }}</td>
-        <td class="text-center">{{ row.goalDifference }}</td>
-        <td class="text-center">{{ row.points }}</td>
-      </tr>
-    </tbody>
-  </table>
-</ng-template>
