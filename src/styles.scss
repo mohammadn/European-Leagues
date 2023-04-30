@@ -13,6 +13,13 @@
   background-color: $gray-200;
 }
 
+td.expandable:hover span {
+  background-color: $gray-300;
+}
+td.expandable:active span {
+  background-color: $gray-500;
+}
+
 th[sortable]::after{
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;

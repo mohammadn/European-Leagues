@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-12">
+    <ul class="nav-tabs" [(activeId)]="activeTab" #nav="ngbNav" ngbNav>
+      <li ngbNavItem="goalkeepers">
+        <button ngbNavLink>Goalkeepers</button>
+        <ng-template ngbNavContent>
+          <ng-container
+            [ngTemplateOutlet]="players"
+            [ngTemplateOutletContext]="{ position: 'Goalkeeper' }"></ng-container>
+        </ng-template>
+      </li>
+      <li ngbNavItem="defenders">
+        <button ngbNavLink>Defenders</button>
+        <ng-template ngbNavContent>
+          <ng-container [ngTemplateOutlet]="players" [ngTemplateOutletContext]="{ position: 'Defence' }"></ng-container>
+        </ng-template>
+      </li>
+      <li ngbNavItem="midfielders">
+        <button ngbNavLink>Midfielders</button>
+        <ng-template ngbNavContent>
+          <ng-container
+            [ngTemplateOutlet]="players"
+            [ngTemplateOutletContext]="{ position: 'Midfield' }"></ng-container>
+        </ng-template>
+      </li>
+      <li ngbNavItem="attackers">
+        <button ngbNavLink>Attackers</button>
+        <ng-template ngbNavContent>
+          <ng-container [ngTemplateOutlet]="players" [ngTemplateOutletContext]="{ position: 'Offence' }"></ng-container>
+        </ng-template>
+      </li>
+    </ul>
+    <div class="mt-2" [ngbNavOutlet]="nav"></div>
+  </div>
+</div>
+
+<ng-template #players let-position="position">
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="col-9">Player</th>
+            <th class="col-3 text-center">Nationality</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <ng-container *ngFor="let player of squad">
+            <tr *ngIf="player.position === position">
+              <td>
+                <div>{{ player.name }}</div>
+                <small class="text-muted">Age {{ player.dateOfBirth | age }}</small>
+              </td>
+              <td class="text-center">{{ player.nationality }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-template>

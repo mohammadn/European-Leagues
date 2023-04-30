@@ -1,33 +1,67 @@
+<form class="mb-2">
+  <input class="form-control" type="text" [formControl]="filter" placeholder="Search" />
+</form>
+
 <table class="table table-hover">
   <thead>
     <tr>
-      <th class="text-center">#</th>
-      <th (sort)="onSort($event)" sortable="team">Team</th>
-      <th class="text-center" (sort)="onSort($event)" sortable="playedGames">PG</th>
-      <th class="text-center" (sort)="onSort($event)" sortable="won">W</th>
-      <th class="text-center" (sort)="onSort($event)" sortable="draw">D</th>
-      <th class="text-center" (sort)="onSort($event)" sortable="lost">L</th>
-      <th class="text-center" (sort)="onSort($event)" sortable="goalsFor">GF</th>
-      <th class="text-center" (sort)="onSort($event)" sortable="goalsAgainst">GA</th>
-      <th class="text-center" (sort)="onSort($event)" sortable="goalDifference">GD</th>
-      <th class="text-center" (sort)="onSort($event)" sortable="points">Pts</th>
+      <th class="text-center col-1">#</th>
+      <th class="col-3" (sort)="onSort($event)" sortable="team">Team</th>
+      <th class="text-center col-1" (sort)="onSort($event)" sortable="playedGames">PG</th>
+      <th class="text-center col-1" (sort)="onSort($event)" sortable="won">W</th>
+      <th class="text-center col-1" (sort)="onSort($event)" sortable="draw">D</th>
+      <th class="text-center col-1" (sort)="onSort($event)" sortable="lost">L</th>
+      <th class="text-center col-1" (sort)="onSort($event)" sortable="goalsFor">GF</th>
+      <th class="text-center col-1" (sort)="onSort($event)" sortable="goalsAgainst">GA</th>
+      <th class="text-center col-1" (sort)="onSort($event)" sortable="goalDifference">GD</th>
+      <th class="text-center col-1" (sort)="onSort($event)" sortable="points">Pts</th>
+      <th class="text-center"></th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
-    <tr *ngFor="let row of sortedTable">
-      <td class="text-center">{{ row.position }}</td>
-      <td>
-        <img class="me-2" alt="" [src]="row.team.crest" width="26px" height="26px" />
-        {{ row.team.name }}
-      </td>
-      <td class="text-center">{{ row.playedGames }}</td>
-      <td class="text-center">{{ row.won }}</td>
-      <td class="text-center">{{ row.draw }}</td>
-      <td class="text-center">{{ row.lost }}</td>
-      <td class="text-center">{{ row.goalsFor }}</td>
-      <td class="text-center">{{ row.goalsAgainst }}</td>
-      <td class="text-center">{{ row.goalDifference }}</td>
-      <td class="text-center">{{ row.points }}</td>
-    </tr>
+    <ng-container
+      *ngFor="
+        let row of sortedTable?.slice(pageSize * pageIndex - pageSize, pageSize * pageIndex);
+        let rowIndex = index
+      ">
+      <tr>
+        <td class="text-center">{{ row.position }}</td>
+        <td>
+          <img class="me-2" alt="" [src]="row.team.crest" width="26px" height="26px" />
+          <ngb-highlight [result]="row.team.name" [term]="filter.value"></ngb-highlight>
+        </td>
+        <td class="text-center">{{ row.playedGames }}</td>
+        <td class="text-center">{{ row.won }}</td>
+        <td class="text-center">{{ row.draw }}</td>
+        <td class="text-center">{{ row.lost }}</td>
+        <td class="text-center">{{ row.goalsFor }}</td>
+        <td class="text-center">{{ row.goalsAgainst }}</td>
+        <td class="text-center">{{ row.goalDifference }}</td>
+        <td class="text-center">{{ row.points }}</td>
+        <td class="text-center expandable" role="button" (click)="collapseRow(rowIndex, row.team.id)">
+          <span class="rounded-circle p-2">
+            <i
+              class="fas fa-chevron-up fa-fx"
+              aria-hidden="true"
+              [ngClass]="expandedRowIndex === rowIndex ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td class="p-0 border-0 bg-light" colspan="11">
+          <div class="overflow-hidden p-2" *ngIf="expandedRowIndex === rowIndex && teamDetails" [@collapseAnimation]>
+            <app-team-details [teamDetails]="teamDetails"></app-team-details>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
   </tbody>
 </table>
+
+<ngb-pagination
+  class="d-flex justify-content-end"
+  [(page)]="pageIndex"
+  [pageSize]="pageSize"
+  [collectionSize]="sortedTable?.length ?? 0"
+  [boundaryLinks]="true"
+  size="sm"></ngb-pagination>
