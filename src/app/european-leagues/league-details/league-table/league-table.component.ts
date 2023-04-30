@@ -1,5 +1,5 @@
 import { animate, sequence, style, transition, trigger } from '@angular/animations';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +15,6 @@ import { TeamDetailsComponent } from './team-details/team-details.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    AsyncPipe,
     NgbPaginationModule,
     NgbTypeaheadModule,
     SortHeaderDirective,
