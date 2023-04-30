@@ -1,11 +1,25 @@
-@import "bootstrap/dist/css/bootstrap.css";
-@import "bootstrap/scss/functions";
-@import "bootstrap/scss/variables";
-@import "bootstrap/scss/variables-dark";
-@import "bootstrap/scss/maps";
-@import "bootstrap/scss/mixins";
-@import "bootstrap/scss/utilities";
+@import 'bootstrap/dist/css/bootstrap.css';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/utilities';
+@import '@fortawesome/fontawesome-free/css/fontawesome';
+@import '@fortawesome/fontawesome-free/css/brands';
+@import '@fortawesome/fontawesome-free/css/solid';
 
-.league:hover span{
-    background-color: $gray-200;
+.league:hover span {
+  background-color: $gray-200;
+}
+
+th[sortable]::after{
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+th.asc::after {
+  content: '\f077';
+}
+th.desc::after {
+  content: '\f078';
 }
