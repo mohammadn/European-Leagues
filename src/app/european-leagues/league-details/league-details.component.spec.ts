@@ -1,5 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { LeagueDetailsComponent } from './league-details.component';
 
 describe('LeagueDetailsComponent', () => {
@@ -8,9 +9,8 @@ describe('LeagueDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeagueDetailsComponent ]
-    })
-    .compileComponents();
+      imports: [LeagueDetailsComponent, HttpClientTestingModule, RouterTestingModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LeagueDetailsComponent);
     component = fixture.componentInstance;

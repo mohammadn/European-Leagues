@@ -1,5 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { of } from 'rxjs';
 import { EuropeanLeaguesComponent } from './european-leagues.component';
 
 describe('EuropeanLeaguesComponent', () => {
@@ -8,9 +9,8 @@ describe('EuropeanLeaguesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EuropeanLeaguesComponent ]
-    })
-    .compileComponents();
+      imports: [EuropeanLeaguesComponent, HttpClientTestingModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EuropeanLeaguesComponent);
     component = fixture.componentInstance;
@@ -20,4 +20,13 @@ describe('EuropeanLeaguesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should load european leagues', fakeAsync(() => {
+    spyOn<any>(component['http'], 'get').and.returnValue(of({ competitions: [{ id: 123 }] }));
+
+    component['loadCompetionsDetails']();
+    tick();
+
+    expect(component['competitions']).toEqual([{ id: 123 }] as any);
+  }));
 });
