@@ -1,5 +1,7 @@
 {
+  "trailingComma": "es5",
   "printWidth": 120,
+  "singleQuote": true,
   "bracketSameLine": true,
   "attributeGroups": [
     "$CODE_GUIDE",
