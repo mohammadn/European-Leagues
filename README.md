@@ -1,8 +1,9 @@
 # Future improvements
-- Considering UI improvements in European League section plus filling each card with more relevant data
+- Consider UI improvements in European League section plus filling each card with more relevant data
 - Add toast message for errors
 - Add more unit tests to the app
 - Populate team details section with more data
+- Optimize for small screens and touch devices such as mobile phones and tablets
 - Internationalized Texts
 
 
